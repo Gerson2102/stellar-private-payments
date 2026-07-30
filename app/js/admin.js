@@ -223,8 +223,8 @@ async function loadExplorerSetting() {
     const storage = await ensureStorage();
     const explorerSetting = await storage.getExplorerSetting();
     App.state.settings.explorerBaseUrl = explorerSetting?.baseUrl || Utils.defaultExplorerBaseUrl;
-  } catch {
-    // Keep the default explorer base URL if storage isn't available yet.
+  } catch (err) {
+    console.warn('Explorer setting unavailable, using default explorer:', err);
   }
 }
 
